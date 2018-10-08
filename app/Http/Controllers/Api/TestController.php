@@ -21,8 +21,8 @@ class TestController extends Controller
                 'name'=>'jack',
             ]
         ];
-
-
+        echo 'hello world!';
+        echo 'hello world!';
         return $this->responseSucceed(compact('list'));
     }
 
