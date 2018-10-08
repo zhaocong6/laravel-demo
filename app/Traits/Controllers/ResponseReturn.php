@@ -12,7 +12,9 @@ trait ResponseReturn
      */
     public function responseCreated($data = null)
     {
-        $data = $this->setMessage($data);
+        if ($data == null){
+            $data = $this->setMessage($data);
+        }
 
         return response()->json($data, CREATED_CODE);
     }
@@ -25,7 +27,9 @@ trait ResponseReturn
      */
     public function responseDeleted($data = null)
     {
-        $data = $this->setMessage($data);
+        if ($data == null){
+            $data = $this->setMessage($data);
+        }
 
         return response()->json($data, DELETED_CODE);
     }
@@ -38,7 +42,9 @@ trait ResponseReturn
      */
     public function responseAccepted($data = null)
     {
-        $data = $this->setMessage($data);
+        if ($data == null){
+            $data = $this->setMessage($data);
+        }
 
         return response()->json($data, ACCEPTED_CODE);
     }
