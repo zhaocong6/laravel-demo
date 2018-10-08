@@ -39,7 +39,7 @@ define('SERVER_ERROR_CODE', 500);
  * */
 define('RESPONSE_RETURN_MES', [
     200 =>  'Success',
-    400 =>  'Request Failed',
+    400 =>  'Invalid Payload',
     401 =>  'Unauthorized',
     403 =>  'No Permission',
     404 =>  'Not Found',
