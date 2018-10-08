@@ -1,38 +1,122 @@
 <?php
 
 namespace App\Traits\Controllers;
-use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 
 trait ResponseReturn
 {
-
     /**
-     * 请求成功返回
+     * 响应创建
      *
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
-    public function success($data = [])
+    public function responseCreated($data = null)
     {
+        $data = $this->setMessage($data);
+
+        return response()->json($data, CREATED_CODE);
+    }
+
+    /**
+     * 响应更新
+     *
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseDeleted($data = null)
+    {
+        $data = $this->setMessage($data);
+
+        return response()->json($data, DELETED_CODE);
+    }
+
+    /**
+     * 响应异步
+     *
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseAccepted($data = null)
+    {
+        $data = $this->setMessage($data);
+
+        return response()->json($data, ACCEPTED_CODE);
+    }
+
+    /**
+     * 响应成功
+     *
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseSucceed($data = null)
+    {
+        $data = $this->setMessage($data);
+
         return response()->json($data, SUCCESS_CODE);
     }
 
     /**
-     * 请求失败返回
+     * 响应not found
      *
-     * @param string $status
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseNotFound()
+    {
+        $data = $this->setMessage([], NOT_FOUND_CODE);
+
+        return response()->json($data, NOT_FOUND_CODE);
+    }
+
+    /**
+     * 响应server error
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseServerError()
+    {
+        $data = $this->setMessage([], SERVER_ERROR_CODE);
+
+        return response()->json($data, SERVER_ERROR_CODE);
+    }
+
+    /**
+     * 响应失败
+     *
      * @param string $message
+     * @param string $status
      * @param int $code
      * @return \Illuminate\Http\JsonResponse
      */
-    public function fail($status = FAIL_STATUS, $message = '', $code = FAIL_CODE)
+    public function responseFailed($message = '', $status = FAIL_STATUS, $code = FAIL_CODE)
     {
-        if ($code === FAIL_CODE){
-            $json['status'] = $status;
+        if (empty($message)){
+            $data = $this->setMessage([], $code);
+        }else{
+            $data['message'] = $message;
         }
 
-        $json['message'] = empty($message) ? RESPONSE_RETURN_MES[$code] : $message;
+        if ($code === FAIL_CODE){
+            $data['status'] = $status;
+        }
 
-        return response()->json($json, $code);
+        return response()->json($data, $code);
     }
+
+    /**
+     * 设置默认返回信息
+     *
+     * @param $data
+     * @param $code
+     * @return mixed
+     */
+    private function setMessage($data, $code = SUCCESS_CODE)
+    {
+        $data = empty($data) ? [] : $data;
+
+        $data['message'] = RESPONSE_RETURN_MES[$code];
+
+        return $data;
+    }
+
 }
