@@ -51,7 +51,9 @@ trait ResponseReturn
      */
     public function responseSucceed($data = null)
     {
-        $data = $this->setMessage($data);
+        if ($data == null){
+            $data = $this->setMessage($data);
+        }
 
         return response()->json($data, SUCCESS_CODE);
     }
