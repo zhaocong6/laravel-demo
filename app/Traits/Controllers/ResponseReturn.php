@@ -112,6 +112,17 @@ trait ResponseReturn
     }
 
     /**
+     * 响应重定向
+     *
+     * @param $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseRedirect($data)
+    {
+        return response()->json($data, SEE_OTHER_CODE);
+    }
+
+    /**
      * 设置默认返回信息
      *
      * @param $data

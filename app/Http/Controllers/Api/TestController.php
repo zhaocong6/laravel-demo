@@ -53,4 +53,11 @@ class TestController extends Controller
     {
         return $this->responseServerError();
     }
+
+    public function redirect()
+    {
+        return $this->responseRedirect([
+            'uri'=>'http://www.baidu.com'
+        ]);
+    }
 }

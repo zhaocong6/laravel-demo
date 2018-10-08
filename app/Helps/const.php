@@ -8,6 +8,8 @@
 | 202 异步投递成功
 | 204 资源删除成功
 |
+| 303 重定向
+|
 | 400 客户端数据请求错误
 | 401 未登录
 | 403 禁止(没权限)
@@ -21,6 +23,8 @@ define('SUCCESS_CODE', 200);
 define('CREATED_CODE', 201);
 define('ACCEPTED_CODE', 202);
 define('DELETED_CODE', 204);
+
+define('SEE_OTHER_CODE', 303);
 
 define('FAIL_CODE', 400);
 define('UNAUTHORIZED_CODE', 401);

@@ -21,6 +21,7 @@
 //Route::post('me', 'AuthController@me');
 
 $router->get('test/serverError', 'TestController@serverError');
+$router->get('test/redirect', 'TestController@redirect');
 $router->get('test/fail', 'TestController@fail');
 $router->get('test/notFound', 'TestController@notFound');
 $router->resource('test', 'TestController');
