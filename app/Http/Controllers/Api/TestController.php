@@ -22,7 +22,6 @@ class TestController extends Controller
             ]
         ];
 
-
         return $this->responseSucceed(compact('list'));
     }
 
