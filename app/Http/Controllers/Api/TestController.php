@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Traits\Controllers\ResponseReturn;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class TestController extends Controller
 {
@@ -20,6 +21,7 @@ class TestController extends Controller
                 'name'=>'jack',
             ]
         ];
+
 
         return $this->responseSucceed(compact('list'));
     }
